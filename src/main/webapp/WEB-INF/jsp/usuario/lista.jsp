@@ -1,20 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<title>AppSorvete</title>
 </head>
 <body>
 
+	<c: import url="/WEB-INF/jsp/menu.jsp" />
+
 	<div class="container">
-		<form action="/usuario" method="get">
 			<h3>Listagem de Usuarios</h3>
 
-			<button type="submit">Novo</button>
-		</form>
+			<c:if test="${not empty mensagem}">
+				<div class="alert alert-success">
+					<strong>Atenção</strong> ${mensagem}
+				</div>
+			</c:if>
 
+			<c:if test="${empty usuarios}">
+				<h5>Não existem usuários cadastrados!</h5>
+			</c:if>
+
+			<c:if test="${not empty usuarios}">
+				<h5>Quantidade de usuários cadastrados: ${usuarios.size()}!</h5>
+			</c:if>
+		
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
